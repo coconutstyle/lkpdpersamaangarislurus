@@ -1,0 +1,113 @@
+/* --- 1. SETUP BACKGROUND (GAMBAR BURAM) --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative; /* Kunci posisi agar background tidak lari */
+    background-color: #333; /* Warna cadangan jika gambar gagal load */
+}
+
+/* Elemen Semu untuk Gambar Background */
+body::before {
+    content: "";
+    position: absolute;
+    /* Kita buat lebih lebar (-20px) agar pinggiran blur tidak terlihat jelek */
+    top: -20px; left: -20px; right: -20px; bottom: -20px;
+    z-index: -1; /* Taruh di paling belakang */
+    
+    /* URL Gambar Background (Math Chalkboard) */
+    background-image: url('Pembiasaan-Pagi.jpeg');
+    background-size: cover;
+    background-position: center;
+    
+    /* EFEK BURAM & GELAP */
+    filter: blur(8px) brightness(0.6); 
+    transform: scale(1.1); /* Zoom sedikit agar rapi */
+}
+
+/* --- 2. KARTU UTAMA (Tengah) --- */
+.landing-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    border: 1px solid rgba(255,255,255,0.3);
+    animation: munculKeatas 1s ease-out;
+}
+
+/* --- 3. TYPOGRAPHY & ICON --- */
+.hero-icon {
+    font-size: 4rem;
+    background: -webkit-linear-gradient(#f6d365, #fda085);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+h1 {
+    font-family: 'Fredoka', sans-serif;
+    color: #333;
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* --- 4. TOMBOL PILIHAN (GRID) --- */
+.role-selection {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-role {
+    flex: 1;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-student {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+}
+
+.btn-teacher {
+    background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+    box-shadow: 0 10px 20px rgba(33, 150, 243, 0.3);
+}
+
+.btn-role:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.1);
+}
+
+/* Animasi Muncul */
+@keyframes munculKeatas {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsif HP */
+@media (max-width: 600px) {
+    .role-selection { flex-direction: column; }
+}
